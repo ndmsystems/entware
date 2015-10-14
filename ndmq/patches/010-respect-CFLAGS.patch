@@ -1,0 +1,11 @@
+--- a/Makefile
++++ b/Makefile
+@@ -28,7 +28,7 @@
+ $(OBJS): version.h
+ 
+ $(TARGET): $(OBJS)
+-	$(CC) $^ -o $@ -rdynamic $(LDFLAGS)
++	$(CC) $(CFLAGS) $^ -o $@ -rdynamic $(LDFLAGS)
+ 
+ version.h:
+ 	echo "#ifndef __NDMQ_VERSION_H__" > version.h
