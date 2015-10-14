@@ -30,7 +30,7 @@ include $(INCLUDE_DIR)/package.mk
 PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
 
 define Package/iptables-keenetic
-  TITLE:=iptables
+  TITLE:=iptables-keenetic
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Firewall
