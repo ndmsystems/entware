@@ -7,11 +7,11 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=iptables
+PKG_NAME:=iptables-keenetic
 PKG_VERSION:=1.4.21
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE:=iptables-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://www.netfilter.org/projects/iptables/files \
 	ftp://ftp.be.netfilter.org/pub/netfilter/iptables/ \
 	ftp://ftp.de.netfilter.org/pub/netfilter/iptables/ \
@@ -23,10 +23,13 @@ PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_LICENSE:=GPL-2.0
 
+#PKG_BUILD_DIR:=$(BUILD_DIR)/iptables-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/iptables
+PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
+
+define Package/iptables-keenetic
   TITLE:=iptables
   SECTION:=net
   CATEGORY:=Network
@@ -34,7 +37,7 @@ define Package/iptables
   URL:=http://netfilter.org/
 endef
 
-define Package/iptables/description
+define Package/iptables-keenetic/description
 IP firewall administration tool.
 
  Matches:
@@ -100,7 +103,7 @@ MAKE_FLAGS := \
 	KERNEL_DIR="$(LINUX_DIR)/user_headers/" PREFIX=/usr \
 	KBUILD_OUTPUT="$(LINUX_DIR)" \
 
-define Package/iptables/install
+define Package/iptables-keenetic/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/bin/iptables-xml $(1)/opt/bin/
 	$(INSTALL_DIR) $(1)/opt/sbin
@@ -111,4 +114,4 @@ define Package/iptables/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/iptables/*.so* $(1)/opt/lib/iptables/
 endef
 
-$(eval $(call BuildPackage,iptables))
+$(eval $(call BuildPackage,iptables-keenetic))
