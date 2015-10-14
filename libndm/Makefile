@@ -43,15 +43,15 @@ EXTRA_CFLAGS += -DLIBNDM_SBCS_SUPPORT
 endif
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_BUILD_DIR)/libndm.so* $(1)/usr/lib/
-	$(CP) -R $(PKG_BUILD_DIR)/include/ndm $(1)/usr/include/
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(INSTALL_DIR) $(1)/opt/include
+	$(CP) $(PKG_BUILD_DIR)/libndm.so* $(1)/opt/lib/
+	$(CP) -R $(PKG_BUILD_DIR)/include/ndm $(1)/opt/include/
 endef
 
 define Package/libndm/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_BUILD_DIR)/libndm.so* $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(CP) $(PKG_BUILD_DIR)/libndm.so* $(1)/opt/lib/
 endef
 
 $(eval $(call BuildPackage,libndm))
