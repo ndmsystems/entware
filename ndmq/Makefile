@@ -5,14 +5,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ndmq
-PKG_VERSION:=1.0.1
+PKG_VERSION:=1.0.2
+PKG_REV:=b01ddf37de358e761e8db81dc147208d25ee5a51
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/ndmsystems/$(PKG_NAME)
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/ndmsystems/$(PKG_NAME)
 PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
