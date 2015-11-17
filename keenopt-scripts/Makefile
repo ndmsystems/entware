@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=keenopt-scripts
-PKG_VERSION:=0.1
-PKG_RELEASE:=2
+PKG_VERSION:=0.2
+PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -38,6 +38,7 @@ define Package/keenopt-scripts/install
 	$(INSTALL_BIN) ./files/S00telnetd $(1)/opt/etc/init.d
 	$(INSTALL_CONF) ./files/passwd.root $(1)/opt/etc
 	$(INSTALL_DATA) ./files/shells $(1)/opt/etc
+	$(LN) /opt/etc/init.d/rc.unslung $(1)/opt/etc/initrc
 	$(INSTALL_DIR) $(1)/opt/etc/ndm/{netfilter,time,usb,user,wan}.d
 	$(INSTALL_BIN) ./files/{010-profile,020-root-pwd}.sh \
 	    $(1)/opt/etc/ndm/user.d
