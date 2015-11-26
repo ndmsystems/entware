@@ -11,7 +11,6 @@
 ```
 git clone https://github.com/Entware-ng/Entware-ng.git
 cd Entware-ng
-cp ./configs/mipselsf.config .config
 ```
 Допишите в файл `feeds.conf` строчку
 ```
