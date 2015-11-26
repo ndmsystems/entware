@@ -27,21 +27,6 @@ src-git keenopt4entware https://github.com/ryzhovau/keenopt4entware.git
 cp feeds/keenopt4entware/toolchain/uClibc/patches/999-keenetic.patch toolchain/uClibc/patches/
 cp feeds/keenopt4entware/.config .config
 ```
-Зайдите в menuconfig:
-```
-make menuconfig
-```
-Отметьте для сборки следующие пакеты и сохраните изменения при выходом:
-```
-busybox-zyx
-libc
-libndm
-ndmq
-proftpd-zyx
-openvpn-zyx
-samba36-zyx-server
-zyx-opt
-```
 Соберите тулчейн и пакеты:
 ```
 make
