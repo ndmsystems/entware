@@ -22,9 +22,10 @@ src-git keenopt4entware https://github.com/ryzhovau/keenopt4entware.git
 ./scripts/feeds update keenopt4entware
 ./scripts/feeds install -a -p keenopt4entware
 ```
-Скопируйте патч для uClibc:
+Скопируйте патч для uClibc и .config для билдрута:
 ```
 cp feeds/keenopt4entware/toolchain/uClibc/patches/999-keenetic.patch toolchain/uClibc/patches/
+cp feeds/keenopt4entware/.config .config
 ```
 Зайдите в menuconfig:
 ```
