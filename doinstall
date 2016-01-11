@@ -1,0 +1,36 @@
+#!/opt/bin/sh
+
+export TZ=`cat /etc/TZ | tail -n 1`
+export PATH=/opt/sbin:/opt/bin:$PATH
+unset LD_LIBRARY_PATH
+unset LD_PRELOAD
+
+URL=http://ndm.zyxmon.org/binaries/keenetic/installer
+
+/opt/bin/logger "Info: Creating folders..."
+for folder in bin etc/init.d lib/opkg sbin share tmp usr var/log var/lock var/run
+do
+  if [ -d "/opt/$folder" ]
+  then
+    /opt/bin/logger "Warning: Folder /opt/$folder exists! If something goes wrong please clean /opt folder and try again."
+  else
+    /opt/bin/mkdir -p /opt/$folder
+  fi
+done
+
+#for multiuser environment
+/opt/bin/chmod 777 /opt/tmp
+
+/opt/bin/logger "Info: Deploying opkg package manager..."
+/opt/bin/wget $URL/opkg -O /opt/bin/opkg
+/opt/bin/chmod +x /opt/bin/opkg
+/opt/bin/wget $URL/opkg.conf -O /opt/etc/opkg.conf
+
+/opt/bin/logger "Info: Basic packages installation..."
+/opt/bin/opkg update
+/opt/bin/opkg install zyx-opt busybox-zyx dropbear ndmq
+/opt/sbin/ldconfig > /dev/null 2>&1
+/opt/bin/logger "Info: Finishing installation, deleting installation script and starting dropbear"
+/opt/etc/init.d/S51dropbear start
+/opt/bin/rm -f /opt/etc/init.d/doinstall
+

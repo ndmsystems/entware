@@ -16,10 +16,10 @@ cp -r $BUILD_DIR/toolchain/ipkg-mipselsf/libc/opt $ROOT_DIR
 cp -r $BUILD_DIR/busybox-*/ipkg-install/opt $ROOT_DIR
 
 # Adding install script
-mkdir $ROOT_DIR/opt/etc
-cp $SCRIPT_DIR/initrc $ROOT_DIR/opt/etc
+mkdir -p $ROOT_DIR/opt/etc/init.d
+cp $SCRIPT_DIR/doinstall $ROOT_DIR/opt/etc/init.d
 
 # Packing installer
 [ -f $INSTALLER ] && rm $INSTALLER
-tar -czf $INSTALLER -C $ROOT_DIR/opt bin lib sbin
+tar -czf $INSTALLER -C $ROOT_DIR/opt bin etc lib sbin
 rm -fr $ROOT_DIR
