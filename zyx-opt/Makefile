@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=zyx-opt
-PKG_VERSION:=108
+PKG_VERSION:=109
 PKG_RELEASE:=1
 
 LIBC_VERSION:=<LIBC_VERSION>
@@ -41,17 +41,19 @@ endef
 
 define Package/zyx-opt/install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
-	$(INSTALL_BIN) ./files/rc.unslung $(1)/opt/etc/init.d/
-	$(INSTALL_BIN) ./files/profile $(1)/opt/etc/
-	$(INSTALL_DATA) ./files/rc.func $(1)/opt/etc/init.d/
+	$(INSTALL_BIN) ./files/rc.unslung $(1)/opt/etc/init.d
+	$(INSTALL_BIN) ./files/profile $(1)/opt/etc
+	$(INSTALL_DATA) ./files/rc.func $(1)/opt/etc/init.d
 	touch $(1)/opt/etc/ld.so.conf
-	$(INSTALL_DATA) ./files/{shells,passwd,group,screenrc} $(1)/opt/etc/
+	$(INSTALL_DATA) ./files/{shells,passwd,group,screenrc} $(1)/opt/etc
 	$(INSTALL_DIR) $(1)/opt/home $(1)/opt/root $(1)/opt/etc/skel
 	$(INSTALL_DATA) ./files/.profile $(1)/opt/etc/skel
 	$(INSTALL_DATA) ./files/.profile $(1)/opt/root
 	$(INSTALL_DATA) ./files/.inputrc $(1)/opt/etc/skel
 	$(INSTALL_DATA) ./files/.inputrc $(1)/opt/root
-	$(INSTALL_DIR) $(1)/opt/usr/lib $(1)/opt/lib
+	$(INSTALL_DIR) $(1)/opt/{bin,sbin,share,tmp,usr} \
+	    $(1)/opt/var/{log,lock,run} \
+	    $(1)/opt/etc/ndm/{wan,user,netfilter,usb,time}.d
 endef
 
 define Package/zyx-opt/postinst
