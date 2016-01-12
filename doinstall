@@ -7,30 +7,27 @@ unset LD_PRELOAD
 
 URL=http://ndm.zyxmon.org/binaries/keenetic/installer
 
-/opt/bin/logger "Info: Creating folders..."
-for folder in bin etc/init.d lib/opkg sbin share tmp usr var/log var/lock var/run
-do
-  if [ -d "/opt/$folder" ]
-  then
-    /opt/bin/logger "Warning: Folder /opt/$folder exists! If something goes wrong please clean /opt folder and try again."
-  else
-    /opt/bin/mkdir -p /opt/$folder
-  fi
+echo 'Starting Entware-ng deployment...'
+echo '[1/3] Deploying opkg package manager...'
+# This is for opkg only. The other folders will be created from zyx-opt package
+for folder in lib/opkg tmp var/lock; do
+    mkdir -p /opt/$folder
 done
 
-#for multiuser environment
-/opt/bin/chmod 777 /opt/tmp
+# Fix for multiuser environment
+chmod 777 /opt/tmp
 
-/opt/bin/logger "Info: Deploying opkg package manager..."
-/opt/bin/wget $URL/opkg -O /opt/bin/opkg
-/opt/bin/chmod +x /opt/bin/opkg
-/opt/bin/wget $URL/opkg.conf -O /opt/etc/opkg.conf
+wget $URL/opkg -O /opt/bin/opkg
+chmod +x /opt/bin/opkg
+wget $URL/opkg.conf -O /opt/etc/opkg.conf
 
-/opt/bin/logger "Info: Basic packages installation..."
-/opt/bin/opkg update
-/opt/bin/opkg install zyx-opt busybox-zyx dropbear ndmq
-/opt/sbin/ldconfig > /dev/null 2>&1
-/opt/bin/logger "Info: Finishing installation, deleting installation script and starting dropbear"
-/opt/etc/init.d/S51dropbear start
-/opt/bin/rm -f /opt/etc/init.d/doinstall
+echo '[2/3] Basic packages installation...'
+opkg update
+opkg install zyx-opt busybox-zyx dropbear ndmq
+ldconfig > /dev/null 2>&1
 
+echo '[3/3] Entware-ng installed! Starting dropbear...'
+dropbear -p 22 -a
+
+echo 'Log on at root:zyxel@my.keenetic.net to start new SSH session.'
+rm $0
