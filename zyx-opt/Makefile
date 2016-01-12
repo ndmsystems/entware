@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2015 Entware
+# Copyright (C) 2011-2016 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -10,6 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=zyx-opt
 PKG_VERSION:=109
 PKG_RELEASE:=1
+PKG_FLAGS:=essential
 
 LIBC_VERSION:=<LIBC_VERSION>
 
@@ -21,8 +22,7 @@ define Package/zyx-opt
 	DEPENDS:=+libc +libgcc +libstdcpp +libpthread +librt \
 		+ldconfig +findutils +terminfo
 	TITLE:=provides basic toolchain libraries (dummy)
-	MAINTAINER:=Entware team, entware.wl500g.info, Zyxmon
-	CONFLICTS:=entware-opt
+	MAINTAINER:=Entware team, http://entware.net
 endef
 
 define Package/zyx-opt/description
