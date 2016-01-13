@@ -16,10 +16,10 @@ cp -r $BUILD_DIR/toolchain/ipkg-mipselsf/libgcc/opt $ROOT_DIR
 # Adding busybox
 cp -r $BUILD_DIR/busybox-*/ipkg-install/opt $ROOT_DIR
 
-# Adding SSH keys to avoid dropbear post-install timeout
+# Adding dummie SSH keys to avoid dropbear post-install timeout
 mkdir -p $ROOT_DIR/opt/etc/dropbear
-cp $SCRIPT_DIR/dropbear_ecdsa_host_key $ROOT_DIR/opt/etc/dropbear
-cp $SCRIPT_DIR/dropbear_rsa_host_key $ROOT_DIR/opt/etc/dropbear
+touch $ROOT_DIR/opt/etc/dropbear/dropbear_ecdsa_host_key
+touch $ROOT_DIR/opt/etc/dropbear/dropbear_rsa_host_key
 
 # Adding install script
 mkdir -p $ROOT_DIR/opt/etc/init.d
