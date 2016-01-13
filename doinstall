@@ -7,6 +7,21 @@ unset LD_PRELOAD
 
 URL=http://ndm.zyxmon.org/binaries/keenetic/installer
 
+echo -n 'Checking partition type... '
+case $(mount | grep 'on /opt' | cut -d ' ' -f 5) in
+    ext2|ext3)
+	echo 'OK.'
+    ;;
+    *ntfs*)
+	echo 'NTFS! owner:grouup attributes is not fully supported.'
+	echo 'Please, use ext2/ext3 if something goes wrong.'
+    ;;
+    *)
+        echo 'failed! Please use ext2/ext3 formatted storage. Aborting...'
+	exit 1
+    ;;
+esac
+
 echo '[1/4] Starting Entware-ng deployment...'
 # This is for opkg only. The other folders will be created from zyx-opt package
 for folder in lib/opkg tmp var/lock; do
