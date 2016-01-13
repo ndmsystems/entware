@@ -33,11 +33,12 @@ echo '[4/4] Generating SSH keys...'
 dbkey () {
 # $1 is a key type [rsa|ecdsa]
     rm /opt/etc/dropbear/dropbear_${1}_host_key
-    dropbearkey -t $1 -f /opt/etc/dropbear/dropbear_${1}_host_key &
+    dropbearkey -t $1 -f /opt/etc/dropbear/dropbear_${1}_host_key > /dev/null &
     while [ ! -z "$(pidof dropbearkey)" ] ; do
 	sleep 2
 	echo -n '.'
     done
+echo 'done.'
 }
 dbkey rsa
 dbkey ecdsa
