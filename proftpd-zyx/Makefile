@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=proftpd-zyx
 PKG_VERSION:=1.3.5
-PKG_RELEASE:=99z
+PKG_RELEASE:=50
 
 PKG_SOURCE:=proftpd-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.proftpd.org/distrib/source

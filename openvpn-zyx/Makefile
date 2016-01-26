@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=openvpn-zyx
 
 PKG_VERSION:=2.3.7
-PKG_RELEASE:=99z
+PKG_RELEASE:=50
 
 PKG_SOURCE_URL:=http://swupdate.openvpn.net/community/releases
 PKG_SOURCE:=openvpn-$(PKG_VERSION).tar.gz

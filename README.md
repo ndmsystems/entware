@@ -28,7 +28,7 @@ cp feeds/keenopt4entware/.config .config
 ```
 Задайте максимальный PKG_RELEASE для библиотек libc, чтобы изменённые библиотеки имели приоритет перед стандартными из Entware-ng:
 ```
-sed -i -e 's|^\(PKG_RELEASE:\)=.*|\1=99z|g' package/libs/toolchain/Makefile
+sed -i -e 's|^\(PKG_RELEASE:\)=.*|\1=50|g' package/libs/toolchain/Makefile
 ```
 Соберите тулчейн и пакеты:
 ```
