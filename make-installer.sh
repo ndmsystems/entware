@@ -21,10 +21,6 @@ mkdir -p $ROOT_DIR/opt/etc/dropbear
 touch $ROOT_DIR/opt/etc/dropbear/dropbear_ecdsa_host_key
 touch $ROOT_DIR/opt/etc/dropbear/dropbear_rsa_host_key
 
-# Adding /opt/etc/shells
-echo '/opt/bin/sh' > $ROOT_DIR/opt/etc/shells
-echo '/opt/bin/ash' >> $ROOT_DIR/opt/etc/shells
-
 # Adding install script
 mkdir -p $ROOT_DIR/opt/etc/init.d
 cp $SCRIPT_DIR/doinstall $ROOT_DIR/opt/etc/init.d

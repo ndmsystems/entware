@@ -43,11 +43,7 @@ opkg update
 opkg install opt-ndmsv2 busybox-zyx dropbear ndmq
 ldconfig > /dev/null 2>&1
 
-echo '[3/4] Configuring start script for NDMS firmware...'
-ndmq -p 'opkg initrc /opt/etc/init.d/rc.unslung'
-ndmq -p 'system configuration save'
-
-echo '[4/4] Generating SSH keys...'
+echo '[3/4] Generating SSH keys...'
 dbkey () {
 # $1 is a key type [rsa|ecdsa]
     rm /opt/etc/dropbear/dropbear_${1}_host_key
@@ -61,7 +57,7 @@ dbkey () {
 dbkey rsa
 dbkey ecdsa
 
-echo 'Entware-ng installed! Starting dropbear...'
+echo '[4/4] Entware-ng installed! Starting dropbear...'
 dropbear -p 22 -a
 
 echo 'Log on at root:zyxel@my.keenetic.net to start new SSH session.'
