@@ -23,7 +23,7 @@ src-git keenopt4entware https://github.com/ryzhovau/keenopt4entware.git
 ```
 Скопируйте патч для uClibc и .config для билдрута:
 ```
-cp feeds/keenopt4entware/toolchain/uClibc/patches/999-keenetic.patch toolchain/uClibc/patches/
+cp feeds/keenopt4entware/toolchain/uClibc/patches/9999-keenetic.patch toolchain/uClibc/patches/
 cp feeds/keenopt4entware/.config .config
 ```
 Задайте максимальный PKG_RELEASE для библиотек libc, чтобы изменённые библиотеки имели приоритет перед стандартными из Entware-ng:
