@@ -7,17 +7,20 @@ unset LD_PRELOAD
 
 URL=http://ndm.zyxmon.org/binaries/keenetic/installer
 
-echo -n 'Checking partition type... '
 case $(mount | grep 'on /opt' | cut -d ' ' -f 5) in
     ext2|ext3)
-	echo 'OK.'
+	echo 'Partition is OK.'
     ;;
     *ntfs*)
-	echo 'NTFS! owner:grouup attributes is not fully supported.'
+	echo 'NTFS partition! owner:group attributes may not be supported.'
+	echo 'Please, use ext2/ext3 if something goes wrong.'
+    ;;
+    *hfs*)
+	echo 'HFS partition is not tested.'
 	echo 'Please, use ext2/ext3 if something goes wrong.'
     ;;
     *)
-        echo 'failed! Please use ext2/ext3 formatted storage. Aborting...'
+        echo 'Please use ext2/ext3 formatted storage. Aborting...'
 	exit 1
     ;;
 esac
@@ -53,7 +56,7 @@ dbkey () {
 	sleep 2
 	echo -n '.'
     done
-echo 'done.'
+    echo 'done.'
 }
 dbkey rsa
 dbkey ecdsa
