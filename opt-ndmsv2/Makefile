@@ -7,16 +7,14 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=zyx-opt
-PKG_VERSION:=109
+PKG_NAME:=opt-ndmsv2
+PKG_VERSION:=1.0
 PKG_RELEASE:=1
 PKG_FLAGS:=essential
 
-LIBC_VERSION:=<LIBC_VERSION>
-
 include $(INCLUDE_DIR)/package.mk
 
-define Package/zyx-opt
+define Package/opt-ndmsv2
 	SECTION:=libs
 	CATEGORY:=Libraries
 	DEPENDS:=+libc +libgcc +libstdcpp +libpthread +librt \
@@ -25,9 +23,9 @@ define Package/zyx-opt
 	MAINTAINER:=Entware team, http://entware.net
 endef
 
-define Package/zyx-opt/description
- zyx-opt is a metapackage to install Entware-ng basic libraries and scripts
- on ZyXEL Keenetic.
+define Package/opt-ndmsv2/description
+ opt-ndmsv2 is a metapackage to install Entware-ng basic libraries and scripts
+ on ZyXEL Keenetic routers with NDMS v2.
 endef
 
 define Build/Prepare
@@ -39,7 +37,7 @@ endef
 define Build/Compile
 endef
 
-define Package/zyx-opt/install
+define Package/opt-ndmsv2/install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/rc.unslung $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/profile $(1)/opt/etc
@@ -56,7 +54,7 @@ define Package/zyx-opt/install
 	    $(1)/opt/etc/ndm/{wan,user,netfilter,usb,time}.d
 endef
 
-define Package/zyx-opt/postinst
+define Package/opt-ndmsv2/postinst
 #!/bin/sh
 
 echo -n "Updating /opt/etc/ld.so.cache... "
@@ -64,4 +62,4 @@ echo -n "Updating /opt/etc/ld.so.cache... "
 echo "done."
 endef
 
-$(eval $(call BuildPackage,zyx-opt))
+$(eval $(call BuildPackage,opt-ndmsv2))

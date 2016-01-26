@@ -40,7 +40,7 @@ wget $URL/opkg.conf -O /opt/etc/opkg.conf
 
 echo '[2/4] Basic packages installation...'
 opkg update
-opkg install zyx-opt busybox-zyx dropbear ndmq
+opkg install opt-ndmsv2 busybox-zyx dropbear ndmq
 ldconfig > /dev/null 2>&1
 
 echo '[3/4] Configuring start script for NDMS firmware...'
