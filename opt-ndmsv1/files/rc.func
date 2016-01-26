@@ -28,7 +28,7 @@ start() {
     COUNTER=0
     LIMIT=10
     while [ -z "`pidof $PROC`" -a "$COUNTER" -le "$LIMIT" ]; do
-        sleep 1s;
+        sleep 1;
         COUNTER=`expr $COUNTER + 1`
     done
     $POSTCMD > /dev/null 2>&1
@@ -52,7 +52,7 @@ stop() {
             COUNTER=0
             LIMIT=10
             while [ -n "`pidof $PROC`" -a "$COUNTER" -le "$LIMIT" ]; do
-                sleep 1s;
+                sleep 1;
                 COUNTER=`expr $COUNTER + 1`
             done
             ;;

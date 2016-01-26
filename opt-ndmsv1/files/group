@@ -1,2 +1,2 @@
-root:*:0:root
-nobody:*:65534:nobody
+root:x:0:
+nogroup:x:65534:

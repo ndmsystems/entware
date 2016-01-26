@@ -6,13 +6,8 @@ PATH=/opt/sbin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:
 # starting them in numerical order and
 # stopping them in reverse numerical order
 
-#logger "Started $0${*:+ $*}."
-
 ACTION=$1
 CALLER=$2
-
-LD_LIBRARY_PATH=""
-TZ=`cat /etc/TZ | tail -n 1`
 
 if [ $# -lt 1 ]; then
     printf "Usage: $0 {start|stop|restart|reconfigure|check|kill}\n" >&2
@@ -21,14 +16,13 @@ fi
 
 [ $ACTION = stop -o $ACTION = restart -o $ACTION = kill ] && ORDER="-r"
 
+# Please note 'find' applet form BB has no '-perm' switch
 for i in $(/opt/bin/find /opt/etc/init.d/ -perm '-u+x' -name 'S*' | sort $ORDER ) ;
 do
     case "$i" in
         S* | *.sh )
             # Source shell script for speed.
             trap "" INT QUIT TSTP EXIT
-            #set $1
-            #echo "trying $i" >> /tmp/rc.log
             . $i $ACTION $CALLER
             ;;
         *)
