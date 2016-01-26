@@ -41,7 +41,7 @@ define Package/opt-ndmsv1/install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/rc.unslung $(1)/opt/etc/init.d
 	$(INSTALL_DATA) ./files/rc.func $(1)/opt/etc/init.d
-	$(INSTALL_DATA) ./files/S01swap $(1)/opt/etc/init.d
+	$(INSTALL_BIN) ./files/S01swap $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/profile $(1)/opt/etc
 	touch $(1)/opt/etc/ld.so.conf
 	$(INSTALL_DATA) ./files/{shells,passwd,group,screenrc} $(1)/opt/etc
