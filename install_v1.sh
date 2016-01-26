@@ -64,6 +64,10 @@ opkg install dropbear
 mkdir -p /opt/etc/dropbear/authorized_keys
 chmod 600 /opt/etc/dropbear/authorized_keys
 
+mkdir -p /media/DISK_A1/system/bin
+dl $URL/ext_init.sh /media/DISK_A1/system/bin/ext_init.sh x
+dl $URL/ext_firewall.sh /media/DISK_A1/system/bin/ext_firewall.sh x
+
 SWAPFILE="/opt/.swapfile"
 echo "Creating swap file. Please wait..."
 dd if=/dev/zero of=$SWAPFILE bs=1048576 count=128
