@@ -7,10 +7,10 @@ URL=http://ndm.zyxmon.org/binaries/keenetic/installer/
 echo "Entware-ng installation started"
 
 # check /opt already mounted
-/bin/grep -q /opt /proc/mounts && echo "/opt already mounted" &&  exit 0
+grep -q /opt /proc/mounts && echo "/opt already mounted" &&  exit 0
 
 # make dir "opt" on the drive root
-/bin/mkdir -p /media/DISK_A1/opt
+mkdir -p /media/DISK_A1/opt
 [ ! -d "/media/DISK_A1/opt" ] && echo "cannot create /opt folder on hdd" && exit 0
 
 # mount /opt (bind only)
@@ -79,11 +79,11 @@ echo "Starting Entware ...."
 
 cat << EOF
 
-Поздравляем! Если скрипт не выдал ошибок, то ситема пакетов Entware-ng успешно установлена.
+Поздравляем! Если скрипт не выдал ошибок, то сиcтема пакетов Entware-ng успешно установлена.
 
-Нашли ошибку - собщите на форуме http://forums.zyxmon.org/viewforum.php?f=5
+Нашли ошибку - сообщите на форуме http://forums.zyxmon.org/viewforum.php?f=5
 
-Для установки пакетов используйте командуe 'opkg install <pkg_name>'.
+Для установки пакетов используйте команду 'opkg install <pkg_name>'.
 
 Если Вам не нужен своп файл, переименуйте /opt/etc/init.d/S01swap в /opt/etc/init.d/K01swap.
 
