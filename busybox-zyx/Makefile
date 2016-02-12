@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=busybox-zyx
 PKG_VERSION:=1.24.1
-PKG_RELEASE:=50
+PKG_RELEASE:=51
 PKG_FLAGS:=essential
 
 PKG_SOURCE:=busybox-$(PKG_VERSION).tar.bz2
