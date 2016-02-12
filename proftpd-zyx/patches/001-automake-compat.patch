@@ -1,6 +1,6 @@
 --- a/configure.in
 +++ b/configure.in
-@@ -40,8 +40,8 @@ if test "$OSTYPE" = "$OSREL" ; then
+@@ -40,8 +40,8 @@
    platform="\"$ostype\""
  fi
  
@@ -11,7 +11,7 @@
  AC_SUBST(OSREL)
  AC_SUBST(OSTYPE)
  
-@@ -278,7 +278,7 @@ AC_ARG_WITH(lastlog,
+@@ -279,7 +279,7 @@
        fi
  
        if test -n "$pr_lastlog_path" ; then
@@ -20,9 +20,18 @@
        fi
      fi
    ])
-@@ -657,15 +657,6 @@ AC_ARG_ENABLE(dso,
-       LIB_DEPS="libltdl"
-       MODULE_DEPS="libltdl"
+@@ -689,24 +689,7 @@
+       ac_core_modules="$ac_core_modules mod_dso.o"
+       ac_build_core_modules="$ac_build_core_modules modules/mod_dso.o"
+ 
+-      MAIN_LDFLAGS="-L\$(top_srcdir)/lib/libltdl -dlopen self -export-dynamic"
+-      MAIN_LIBS="\$(LIBLTDL)"
+-
+-      MODULE_LDFLAGS="-avoid-version -export-dynamic -module"
+-
+-      INSTALL_DEPS="install-libltdl"
+-      LIB_DEPS="libltdl"
+-      MODULE_DEPS="libltdl"
        AC_DEFINE(PR_USE_DSO, 1, [Define if using DSO support.])
 -
 -      dnl Run configure scripts in subdirectories
@@ -36,7 +45,7 @@
      fi
    ])
  
-@@ -1029,9 +1020,9 @@ AC_ARG_ENABLE(scoreboard-updates,
+@@ -1078,9 +1061,9 @@
    [
      if test x"$enableval" = xyes || test x"$enableval" = xno ; then
        AC_MSG_WARN(scoreboard updates defaulting to 10)
@@ -48,7 +57,7 @@
      fi
    ])
  
-@@ -1267,13 +1258,13 @@ if test x"$force_shadow" != xno ; then
+@@ -1316,13 +1299,13 @@
          AC_DEFINE(PR_USE_SHADOW, 1, [Define if using shadow password support.])
  
          AC_CHECK_MEMBER(struct spwd.sp_warn,
@@ -65,7 +74,7 @@
            [#include <shadow.h>])
  
        fi ])
-@@ -2696,19 +2687,19 @@ pr_saved_exec_prefix="$exec_prefix"
+@@ -2976,19 +2959,19 @@
  test "x$prefix" = xNONE && prefix=$ac_default_prefix
  test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
  
@@ -92,7 +101,7 @@
  
  prefix="$pr_saved_prefix"
  exec_prefix="$pr_saved_exec_prefix"
-@@ -2764,11 +2755,11 @@ if test "$OSTYPE" = "-DDARWIN6" -o "$OST
+@@ -3048,11 +3031,11 @@
  fi
  
  my_cflags="\"$CFLAGS\""
@@ -111,35 +120,3 @@
 +++ b/acinclude.m4
 @@ -0,0 +1 @@
 +sinclude(m4/proftpd.m4)
---- /dev/null
-+++ b/lib/libltdl/acinclude.m4
-@@ -0,0 +1,7 @@
-+sinclude(m4/argz.m4)
-+sinclude(m4/libtool.m4)
-+sinclude(m4/ltversion.m4)
-+sinclude(m4/ltsugar.m4)
-+sinclude(m4/ltoptions.m4)
-+sinclude(m4/ltdl.m4)
-+sinclude(m4/lt~obsolete.m4)
---- a/lib/libltdl/Makefile.am
-+++ b/lib/libltdl/Makefile.am
-@@ -50,19 +50,7 @@ AM_LDFLAGS	       += -no-undefined
- LTDL_VERSION_INFO	= -version-info 9:0:2
- 
- noinst_LTLIBRARIES	+= $(LT_DLLOADERS)
--
--if INSTALL_LTDL
--ltdlincludedir		= $(includedir)/libltdl
--ltdlinclude_HEADERS	= libltdl/lt_system.h \
--			  libltdl/lt_error.h \
--			  libltdl/lt_dlloader.h
--include_HEADERS	       += ltdl.h
--lib_LTLIBRARIES	       += libltdl.la
--endif
--
--if CONVENIENCE_LTDL
- noinst_LTLIBRARIES     += libltdlc.la
--endif
- 
- libltdl_la_SOURCES = libltdl/lt__alloc.h \
- 			  libltdl/lt__dirent.h \
