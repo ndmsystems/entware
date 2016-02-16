@@ -66,6 +66,7 @@ define Package/openvpn-zyx/install
 	$(INSTALL_DIR) \
 		$(1)/opt/sbin \
 		$(1)/opt/etc/init.d \
+		$(1)/opt/etc/openvpn
 
 	$(INSTALL_BIN) \
 		$(PKG_INSTALL_DIR)/opt/sbin/openvpn \
