@@ -40,7 +40,7 @@ wget $URL/opkg.conf -O /opt/etc/opkg.conf
 
 echo '[2/4] Basic packages installation...'
 opkg update
-opkg install opt-ndmsv2 busybox-zyx dropbear ndmq
+opkg install opt-ndmsv2 busybox-zyx dropbear
 ldconfig > /dev/null 2>&1
 
 echo '[3/4] Generating SSH keys...'
