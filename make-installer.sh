@@ -16,6 +16,11 @@ cp -r $BUILD_DIR/toolchain/ipkg-mipselsf/libgcc/opt $ROOT_DIR
 # Adding busybox
 cp -r $BUILD_DIR/busybox-*/ipkg-install/opt $ROOT_DIR
 
+# This script will seed some dots to terminal.
+# Otherwise, f\w will kill installation after 8 seconds of silence
+cp $SCRIPT_DIR/dots.sh $ROOT_DIR/opt/bin
+chmod +x $ROOT_DIR/opt/bin/dots.sh
+
 # Adding dummie SSH keys to avoid dropbear post-install timeout
 mkdir -p $ROOT_DIR/opt/etc/dropbear
 touch $ROOT_DIR/opt/etc/dropbear/dropbear_ecdsa_host_key

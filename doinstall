@@ -26,6 +26,7 @@ case $(mount | grep 'on /opt' | cut -d ' ' -f 5) in
 esac
 
 echo '[1/4] Starting Entware-ng deployment...'
+dots.sh &
 # This is for opkg only. The other folders will be created from zyx-opt package
 for folder in lib/opkg tmp var/lock; do
     mkdir -p /opt/$folder
