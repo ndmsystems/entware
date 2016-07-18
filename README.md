@@ -36,4 +36,4 @@ sed -i -e 's|^\(PKG_RELEASE:\)=.*|\1=50|g' package/libs/toolchain/Makefile
 ```
 make
 ```
-Собранные пакеты будут находиться в папке `bin`. Именно в таком виде они перенесены в [отдельный репозиторий](http://ndm.zyxmon.org/binaries/keenetic/) для кинетиков.
+Собранные пакеты будут находиться в папке `bin`. Именно в таком виде они перенесены в [отдельный репозиторий](http://pkg.entware-keenetic.ru/binaries/keenetic/) для кинетиков.
