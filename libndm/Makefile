@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libndm
 PKG_VERSION:=1.0.22
-PKG_MD5SUM:=f1ba9461a10e133d02d8ea9c3705e366
+PKG_REV:=0ddc9338fc09feb165addcce9f6eccbbf87fed8d
 PKG_RELEASE:=1
 PKG_LICENSE:=NDM
 
