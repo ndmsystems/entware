@@ -5,7 +5,7 @@ export PATH=/opt/sbin:/opt/bin:$PATH
 unset LD_LIBRARY_PATH
 unset LD_PRELOAD
 
-URL=http://ndm.zyxmon.org/binaries/keenetic/installer
+URL=http://pkg.entware-keenetic.ru/binaries/keenetic/installer
 
 case $(mount | grep 'on /opt' | cut -d ' ' -f 5) in
     ext2|ext3)
