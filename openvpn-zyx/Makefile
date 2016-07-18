@@ -9,12 +9,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openvpn-zyx
 
-PKG_VERSION:=2.3.10
+PKG_VERSION:=2.3.11
 PKG_RELEASE:=50
 
 PKG_SOURCE_URL:=http://swupdate.openvpn.net/community/releases
 PKG_SOURCE:=openvpn-$(PKG_VERSION).tar.xz
-PKG_MD5SUM:=8831ded42db4317e287157b6b8cba74c
+PKG_MD5SUM:=0f5f1ca1dc5743fa166d93dd4ec952f014b5f33bafd88f0ea34b455cae1434a7
+
 PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xf $(DL_DIR)/$(PKG_SOURCE)
 
 PKG_INSTALL:=1
@@ -44,15 +45,18 @@ CONFIGURE_VARS += \
 
 define Build/Configure
 	$(call Build/Configure/Default, \
+		--enable-small \
 		--disable-selinux \
 		--disable-systemd \
 		--disable-plugins \
 		--disable-debug \
 		--disable-pkcs11 \
 		--enable-lzo \
+		--enable-ssl \
 		--enable-server \
 		--disable-management \
 		--enable-socks \
+		--enable-http-proxy \
 		--enable-fragment \
 		--enable-multihome \
 		--disable-iproute2 \
