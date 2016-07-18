@@ -16,7 +16,7 @@ cd Entware-ng
 ```
 Допишите в файл `feeds.conf` строчку
 ```
-src-git keenopt4entware https://github.com/ryzhovau/keenopt4entware.git
+src-git keenopt4entware https://github.com/ndmsystems/entware.git
 ```
 Обновите подключенный фид и установите из него все пакеты:
 ```
