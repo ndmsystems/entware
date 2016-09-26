@@ -1,0 +1,76 @@
+diff --git a/src/core.c b/src/core.c
+index 76ba661..6490b0f 100644
+--- a/src/core.c
++++ b/src/core.c
+@@ -21,6 +21,9 @@
+ #include <ndm/string.h>
+ #include <ndm/ip_sockaddr.h>
+ 
++#define NDM_CORE_PORT_									41230
++#define NDM_CORE_EVENT_PORT_							41232
++#define NDM_CORE_ADDRESS_								"127.0.0.1"
+ #define NDM_CORE_SOCKET_								"/var/run/ndm.core.socket"
+ #define NDM_CORE_EVENT_SOCKET_							"/var/run/ndm.event.socket"
+ 
+@@ -653,6 +656,30 @@ struct ndm_core_event_connection_t *ndm_core_event_connection_open(
+ 		}
+ 
+ 		if (!connected) {
++			if ((connection->fd =
++					socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
++			{
++				/* failed to open a new TCP socket */
++			} else {
++				struct ndm_ip_sockaddr_t sa = NDM_IP_SOCKADDR_ANY;
++
++				ndm_ip_sockaddr_set_port(&sa, NDM_CORE_EVENT_PORT_);
++
++				if (ndm_ip_sockaddr_pton(NDM_CORE_ADDRESS_, &sa) &&
++					connect(connection->fd,
++						(struct sockaddr *) &sa,
++						(socklen_t) ndm_ip_sockaddr_size(&sa)) == 0)
++				{
++					connected = true;
++					connection->timeout = timeout;
++					__ndm_core_buffer_init(&connection->buffer,
++						connection->buffer_storage,
++						sizeof(connection->buffer_storage));
++				}
++			}
++		}
++
++		if (!connected) {
+ 			close(connection->fd);
+ 			free(connection);
+ 			connection = NULL;
+@@ -1055,6 +1082,30 @@ struct ndm_core_t *ndm_core_open(
+ 					}
+ 				}
+ 			}
++
++			if (!connected) {
++				if ((core->fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0) {
++					/* failed to open a new TCP socket */
++				} else {
++					struct ndm_ip_sockaddr_t sa = NDM_IP_SOCKADDR_ANY;
++
++					ndm_ip_sockaddr_set_port(&sa, NDM_CORE_PORT_);
++
++					if (!ndm_ip_sockaddr_pton(NDM_CORE_ADDRESS_, &sa) ||
++						connect(core->fd,
++							(struct sockaddr *) &sa,
++							(socklen_t) ndm_ip_sockaddr_size(&sa)) != 0)
++					{
++						/* failed to parse a defined core address or connect */
++						close(core->fd);
++						core->fd = -1;
++					} else {
++						connected = true;
++						core->timeout = NDM_CORE_DEFAULT_TIMEOUT;
++						core->response_id = NDM_CORE_RESPONSE_ID_INITIALIZER_;
++					}
++				}
++			}
+ 		}
+ 
+ 		if (!connected) {
