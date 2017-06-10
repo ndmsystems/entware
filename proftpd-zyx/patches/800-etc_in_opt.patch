@@ -1,19 +1,21 @@
 --- a/modules/mod_auth_unix.c
 +++ b/modules/mod_auth_unix.c
-@@ -97,8 +97,8 @@
+@@ -101,10 +101,10 @@
  
- #include "privs.h"
+ module auth_unix_module;
  
 -static const char *pwdfname = "/etc/passwd";
--static const char *grpfname = "/etc/group";
 +static const char *pwdfname = "/opt/etc/passwd";
-+static const char *grpfname = "/opt/etc/group";
+ static FILE *pwdf = NULL;
  
- #ifdef HAVE__PW_STAYOPEN
- extern int _pw_stayopen;
+-static const char *grpfname = "/etc/group";
++static const char *grpfname = "/opt/etc/group";
+ static FILE *grpf = NULL;
+ 
+ static int unix_persistent_passwd = FALSE;
 --- a/include/default_paths.h
 +++ b/include/default_paths.h
-@@ -36,7 +36,7 @@
+@@ -35,7 +35,7 @@
   * ftpcount, ftpwho, etc.
   */
  #ifndef PR_RUN_DIR
@@ -22,7 +24,7 @@
  #endif
  
  /* The location you wish to place any core files produced as a result of
-@@ -50,36 +50,36 @@
+@@ -49,21 +49,21 @@
   * when run in standalone daemon mode.
   */
  #ifndef PR_PID_FILE_PATH
@@ -41,16 +43,19 @@
  /* The location of your `shells' file; a newline delimited list of
   * valid shells on your system.
   */
--#define PR_VALID_SHELL_PATH	"/etc/shells"
-+#define PR_VALID_SHELL_PATH	"/opt/etc/shells"
+ #ifndef PR_VALID_SHELL_PATH
+-# define PR_VALID_SHELL_PATH	"/etc/shells"
++# define PR_VALID_SHELL_PATH	"/opt/etc/shells"
+ #endif
  
  /* Where your log files are kept.  The "wu-ftpd style" xferlog is
-  * stored here, as well as "extended" (not yet available) transfer
-  * log files.  These can be overridden in the configuration file via
+@@ -72,19 +72,19 @@
   * "TransferLog" and "ExtendedLog".
   */
--#define PR_XFERLOG_PATH		"/var/log/xferlog"
-+#define PR_XFERLOG_PATH		"/opt/var/log/xferlog"
+ #ifndef PR_XFERLOG_PATH
+-# define PR_XFERLOG_PATH	"/var/log/xferlog"
++# define PR_XFERLOG_PATH	"/opt/var/log/xferlog"
+ #endif
  
  /* Location of the file that tells proftpd to discontinue servicing
   * requests.
@@ -61,7 +66,9 @@
  /* Location of the file containing users that *cannot* use ftp
   * services (odd, eh?)
   */
--#define PR_FTPUSERS_PATH	"/etc/ftpusers"
-+#define PR_FTPUSERS_PATH	"/opt/etc/ftpusers"
+ #ifndef PR_FTPUSERS_PATH
+-# define PR_FTPUSERS_PATH	"/etc/ftpusers"
++# define PR_FTPUSERS_PATH	"/opt/etc/ftpusers"
+ #endif
  
  #endif /* PROFTPD_PATHS_H */
