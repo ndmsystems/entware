@@ -12,7 +12,12 @@ ACTION=$1
 CALLER=$2
 
 LD_LIBRARY_PATH=""
-TZ=`cat /etc/TZ | tail -n 1`
+
+if [ ! -f "/opt/etc/TZ" ]; then
+ln -sf /etc/TZ /opt/etc/TZ
+fi
+
+unset TZ
 
 if [ $# -lt 1 ]; then
     printf "Usage: $0 {start|stop|restart|reconfigure|check|kill}\n" >&2
