@@ -1,3 +1,7 @@
+Обратите внимание: для кинетиков существует [отдельный порт Entware-ng](https://github.com/The-BB/Entware-Keenetic). Приведённая ниже информация оставлена исключительно для истории.
+
+***
+
 # Адаптация Entware-ng для ZyXEL Keenetic
 
 Собранные здесь пакеты позволяют:
@@ -14,14 +18,13 @@
 git clone https://github.com/Entware-ng/Entware-ng.git
 cd Entware-ng
 ```
-Допишите в файл `feeds.conf` строчку
+Поместите в файл `feeds.conf` единственную строчку
 ```
-src-git keenopt4entware https://github.com/ndmsystems/entware.git
+echo 'src-git keenopt4entware https://github.com/ndmsystems/entware.git' > feeds.conf
 ```
 Обновите подключенный фид и установите из него все пакеты:
 ```
-./scripts/feeds update keenopt4entware
-./scripts/feeds install -a -p keenopt4entware
+make package/symlinks
 ```
 Скопируйте патч для uClibc и .config для билдрута:
 ```
@@ -36,4 +39,4 @@ sed -i -e 's|^\(PKG_RELEASE:\)=.*|\1=50|g' package/libs/toolchain/Makefile
 ```
 make
 ```
-Собранные пакеты будут находиться в папке `bin`. Именно в таком виде они перенесены в [отдельный репозиторий](http://pkg.entware-keenetic.ru/binaries/keenetic/) для кинетиков.
+Собранные пакеты будут находиться в папке `bin`. Именно в таком виде они перенесены в [отдельный репозиторий](http://pkg.entware-keenetic.ru/binaries/keenle.old/) для кинетиков.
