@@ -8,7 +8,7 @@ unset LD_PRELOAD
 URL=http://pkg.entware-keenetic.ru/binaries/keenle.old/installer
 
 case $(mount | grep 'on /opt' | cut -d ' ' -f 5) in
-    ext2|ext3)
+    ext*)
 	echo 'Partition is OK.'
     ;;
     *ntfs*)

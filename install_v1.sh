@@ -57,9 +57,7 @@ dl $URL/opkg.conf /opt/etc/opkg.conf
 echo "Info: Basic packages installation..."
 
 opkg update
-opkg install opt-ndmsv1
-opkg install busybox-zyx
-opkg install dropbear
+opkg install opt-ndmsv1 busybox-zyx dropbear
 
 mkdir -p /opt/etc/dropbear/authorized_keys
 chmod 600 /opt/etc/dropbear/authorized_keys
